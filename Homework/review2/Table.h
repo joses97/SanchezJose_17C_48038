@@ -65,7 +65,7 @@ class Table:public AbsTabl{
         
         void setData(int r,int c,int num)
         {
-            columns
+            
         };
 };
 

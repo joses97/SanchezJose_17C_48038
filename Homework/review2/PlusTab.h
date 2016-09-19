@@ -24,11 +24,10 @@ class PlusTab:public Table{
             {
                 for(int j=0; j<szCol; j++)
                 {
-                    //ObjN.columns[i]->setData(i, j) = columns[i]->getData(j) + 
-                     //       P2.columns[i]->getData(j);
+                    
                 }
             }
-            return(P2);
+            return(ObjN);
             
         };
 };
