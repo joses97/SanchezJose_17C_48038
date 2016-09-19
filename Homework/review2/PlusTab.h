@@ -15,7 +15,22 @@ class PlusTab:public Table{
         {
             
         };
-        PlusTab operator+(const PlusTab &);
+        
+        
+        PlusTab operator+(const PlusTab &P2)
+        {
+            PlusTab ObjN(szRow, szCol);
+            for(int i=0; i<szRow; i++)
+            {
+                for(int j=0; j<szCol; j++)
+                {
+                    //ObjN.columns[i]->setData(i, j) = columns[i]->getData(j) + 
+                     //       P2.columns[i]->getData(j);
+                }
+            }
+            return(P2);
+            
+        };
 };
 
 #endif	/* PLUSTAB_H */

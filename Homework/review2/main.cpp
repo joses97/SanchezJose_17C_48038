@@ -31,7 +31,7 @@ int main(int argc, char** argv) {
    //Test out the Tables
    PlusTab tab1(rows,cols);
    PlusTab tab2(tab1);
-//   PlusTab tab3=tab1+tab2;
+   PlusTab tab3=tab1+tab2;
    
    //Print the tables
    cout<<"Abstracted and Polymorphic Print Table 1 size is [row,col] = ["
@@ -42,7 +42,7 @@ int main(int argc, char** argv) {
    prntTab(tab2);
    cout<<"Operator Overloaded Table 3 size is [row,col] = ["
            <<rows<<","<<cols<<"]";
-//   prntTab(tab3);
+   prntTab(tab3);
 
    //Exit Stage Right
    
