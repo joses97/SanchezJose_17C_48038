@@ -4,11 +4,7 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
-      <itemPath>AbsRow.h</itemPath>
-      <itemPath>AbsTabl.h</itemPath>
-      <itemPath>PlusTab.h</itemPath>
-      <itemPath>RowAray.h</itemPath>
-      <itemPath>Table.h</itemPath>
+      <itemPath>SimpleVector.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -17,8 +13,6 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
-      <itemPath>RowAray.cpp</itemPath>
-      <itemPath>Table.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -43,19 +37,7 @@
       </toolsSet>
       <compileType>
       </compileType>
-      <item path="AbsRow.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="AbsTabl.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="PlusTab.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="RowAray.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="RowAray.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Table.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Table.h" ex="false" tool="3" flavor2="0">
+      <item path="SimpleVector.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -80,19 +62,7 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
-      <item path="AbsRow.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="AbsTabl.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="PlusTab.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="RowAray.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="RowAray.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Table.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Table.h" ex="false" tool="3" flavor2="0">
+      <item path="SimpleVector.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>

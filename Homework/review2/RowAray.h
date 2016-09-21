@@ -12,16 +12,7 @@
 
 class RowAray:public AbsRow{
     public:
-        RowAray(unsigned int r)
-        {
-            size=r;
-            rowData = new int[r];
-            
-            for(int i=0; i<size; i++)
-            {
-                rowData[i]=10+rand()%(89);
-            }
-        };
+        RowAray(unsigned int r);
         virtual ~RowAray()
         {
             delete rowData;
