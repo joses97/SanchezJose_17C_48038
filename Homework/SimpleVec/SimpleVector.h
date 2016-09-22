@@ -12,6 +12,7 @@ class SimpleVector
 private:
    T *aptr;          // To point to the allocated array
    int arraySize;    // Number of elements in the array
+   int eleNum;     //number of elements
    void memError();  // Handles memory allocation errors
    void subError();  // Handles subscripts out of range
 
@@ -32,12 +33,21 @@ public:
    // Accessor to return the array size
    int size() const
       { return arraySize; }
-
+  
    // Accessor to return a specific element
    T getElementAt(int position);
 
    // Overloaded [] operator declaration
    T &operator[](const int &);
+   
+   //push back
+   T pushback(int num);
+   
+   //pop off
+   T popoff(int num);
+   
+   //display the array
+   T display();
 };
 
 //***********************************************************
@@ -45,9 +55,108 @@ public:
 // array and allocates memory for it.                       *
 //***********************************************************
 
+//popoff
+template <class T>
+T SimpleVector<T>::popoff(int num)
+{
+    eleNum-=1;
+    int size=arraySize;
+    int size2=size/2;
+    T *newArr;
+    
+    //test to determine if a new smaller array should be created.
+    if(eleNum<size2)
+    {
+        //create new array of half the size + 1
+        newArr = new T[size2+1];
+        
+        //initialize new values of array to 0
+        for(int i=0; i<size2+1; i++)
+        {
+            newArr[i]=0;
+        }
+        
+        //copy contents of array
+        for(int i=0; i<eleNum; i++)
+        {
+            newArr[i]=aptr[i];
+        }
+        
+        
+        
+        
+        
+    }
+    
+    
+}
+
+//pushback
+template <class T>
+T SimpleVector<T>::pushback(int num)
+{
+    eleNum+=1;
+    int size=arraySize;
+    T *newArr;
+    
+    //test to determine if expansion is needed
+    if(eleNum>=size)
+    {
+        //double size if number of elements is greater than size of current array
+        size=size*2;
+        //create new array of double the size of previous array
+        newArr = new T[size];
+        
+        //set new array = 0
+        for(int i=0; i<size; i++)
+        {
+            newArr[i]=0;
+        }
+        
+        //loop to copy contents
+        for(int i=0; i<arraySize; i++)
+        {
+            newArr[i]=aptr[i];
+        }
+        //assign value of newArr at the current number of total elements to num
+        newArr[eleNum-1]=num;
+        //delete pointer
+        delete aptr;
+        //dynamically recreate array with double the size
+        aptr = new T[size];
+        //copy back
+        for(int i=0; i<size; i++)
+        {
+            *(aptr+i) = newArr[i];
+        }
+        //delete array created
+        delete newArr;
+        
+        //apply new size of array
+        arraySize=size;
+    }
+    
+    if(eleNum<size)
+    {
+        aptr[eleNum-1]=num;
+    }    
+}
+
+//display the array
+template <class T>
+T SimpleVector<T>::display()
+{
+    for(int i=0; i<arraySize; i++)
+    {
+        cout<<aptr[i];
+    }
+    cout<<endl<<endl;
+}
+
 template <class T>
 SimpleVector<T>::SimpleVector(int s)
 {
+   eleNum=s;
    arraySize = s;
    // Allocate memory for the array.
    try
@@ -146,4 +255,12 @@ T &SimpleVector<T>::operator[](const int &sub)
       subError();
    return aptr[sub];
 }
+
+//pushback 
+//template <class T>
+
+
 #endif
+
+
+

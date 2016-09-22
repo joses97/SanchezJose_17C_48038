@@ -11,7 +11,9 @@
  * Created on September 21, 2016, 2:28 PM
  */
 
+#include <iostream>
 #include <cstdlib>
+#include "SimpleVector.h"
 
 using namespace std;
 
@@ -19,7 +21,18 @@ using namespace std;
  * 
  */
 int main(int argc, char** argv) {
+    SimpleVector <int> obj1(10);
+    SimpleVector <int> obj2(5); 
+    
+    obj2.display();
 
+
+    for(int i=0; i<20; i++)
+    {
+        obj2.pushback(2);
+        obj2.display();
+  
+    }    
     return 0;
 }
 
