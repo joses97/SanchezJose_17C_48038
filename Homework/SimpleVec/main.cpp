@@ -22,17 +22,24 @@ using namespace std;
  */
 int main(int argc, char** argv) {
     SimpleVector <int> obj1(10);
-    SimpleVector <int> obj2(5); 
+    SimpleVector <int> obj2(3); 
     
     obj2.display();
 
 
-    for(int i=0; i<20; i++)
+    for(int i=0; i<10; i++)
     {
         obj2.pushback(2);
         obj2.display();
   
-    }    
+    }  
+    
+    for(int i=0; i<30; i++)
+    {
+        obj2.popoff();
+        obj2.display();
+  
+    }  
     return 0;
 }
 

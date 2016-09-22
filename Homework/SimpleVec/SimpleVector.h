@@ -44,7 +44,7 @@ public:
    T pushback(int num);
    
    //pop off
-   T popoff(int num);
+   T popoff();
    
    //display the array
    T display();
@@ -57,35 +57,56 @@ public:
 
 //popoff
 template <class T>
-T SimpleVector<T>::popoff(int num)
+T SimpleVector<T>::popoff()
 {
-    eleNum-=1;
+    eleNum=eleNum-1;
     int size=arraySize;
     int size2=size/2;
     T *newArr;
-    
-    //test to determine if a new smaller array should be created.
-    if(eleNum<size2)
+
+    //popoff
+    if(eleNum>0)
     {
-        //create new array of half the size + 1
-        newArr = new T[size2+1];
-        
-        //initialize new values of array to 0
-        for(int i=0; i<size2+1; i++)
+        aptr[eleNum]=0;
+    
+        //test to determine if a new smaller array should be created.
+        if(eleNum<size2)
         {
-            newArr[i]=0;
+            //create new array of half the size + 1
+            newArr = new T[size2];
+
+            //initialize new values of array to 0
+            for(int i=0; i<size2; i++)
+            {
+                newArr[i]=0;
+            }
+
+            //copy contents of array
+            for(int i=0; i<eleNum; i++)
+            {
+                newArr[i]=aptr[i];
+            }
+
+            //delete 
+            delete aptr;
+
+            //recreate the aptr array with new size
+
+            aptr = new T[size2];
+
+            //reassign
+            for(int i=0; i<size2; i++)
+            {
+                aptr[i] = 0;
+            }
+            for(int i=0; i<size2; i++)
+            {
+                aptr[i] = newArr[i];
+            }
+
+            aptr[eleNum]=0;
+            arraySize=size2;
         }
-        
-        //copy contents of array
-        for(int i=0; i<eleNum; i++)
-        {
-            newArr[i]=aptr[i];
-        }
-        
-        
-        
-        
-        
     }
     
     
