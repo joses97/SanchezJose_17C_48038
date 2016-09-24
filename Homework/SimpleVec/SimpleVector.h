@@ -108,6 +108,8 @@ T SimpleVector<T>::popoff()
             arraySize=size2;
         }
     }
+     
+
     
     
 }
