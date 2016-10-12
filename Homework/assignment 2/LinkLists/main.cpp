@@ -26,7 +26,10 @@ int   findLst(Link *,int);  //Determine what link contains the data
 Link * fndLst(Link *,int);  //Determine address of link that contains the data
 int    cntLst(Link *);      //How many elements are in the list
 Link * addStrt(Link *, int);    //Adds a link to the beginning
-Link * addAftr(Link *, int, int);    //adds value int before int
+Link * addAftr(Link *, int, int);    //adds value int after int
+Link * addBefr(Link *, int, int);   //adds value int before int
+Link * fndBefr(Link *, int);          //find link pointer before given value
+Link * delVal(Link *, int);     //deletes link at that hold given value;
 
 //000000001111111112222222222333333333344444444445555555555666666666677777777778
 //345678901234567890123456789012345678901234567890123456789012345678901234567890
@@ -70,6 +73,17 @@ int main(int argc, char** argv) {
     prntLst(lnkList);
     
     //add before a number given
+    //adds the number 23 before the number 6
+    lnkList = addBefr(lnkList, 6, 23);
+    
+    //display
+    cout<<"Adding value 23 before 6"<<endl;
+    prntLst(lnkList);
+    
+    //delete value 4
+    cout<<"Deleting link which contains data=4"<<endl;
+    lnkList = delVal(lnkList, 4);
+    prntLst(lnkList);
     
     
     //Deallocate memory for the Linked List
@@ -79,7 +93,20 @@ int main(int argc, char** argv) {
     return 0;
 }
 
+Link *delVal(Link *front,  int value)
+{
+    Link *temp1 = new Link; //create new link
+    Link *temp2 = new Link; //create new link
+    
+    temp1 = fndLst(front, value); //set  temp1 to link for given delete value
+    temp2 = fndBefr(front, value); //set temp2 to link before delete value
+    
+    temp2->linkPtr=temp1->linkPtr; //set temp2's lnkptr to temp1's lnkptr
+    temp1=NULL; //set temp1 = NULL
 
+    return front;
+    
+}
 
 //adds to the beginning of the node
 Link *addStrt(Link *front, int data)
@@ -200,6 +227,18 @@ Link  *fndLst(Link *front, int value){
     return NULL;                           //Not found
 }
 
+//find value before
+Link *fndBefr(Link *front, int value)
+{
+    Link *temp = front;
+    do
+    {
+        if(temp->linkPtr->data==value) return temp;
+        temp = temp->linkPtr;
+    }while(temp!=NULL);
+    return NULL;
+}
+
 //000000001111111112222222222333333333344444444445555555555666666666677777777778
 //345678901234567890123456789012345678901234567890123456789012345678901234567890
 //Function Find the number of links in the list
@@ -217,7 +256,7 @@ int   cntLst(Link *front){
 
 //000000001111111112222222222333333333344444444445555555555666666666677777777778
 //345678901234567890123456789012345678901234567890123456789012345678901234567890
-//adds before a value
+//adds after a value
 Link *addAftr(Link *front, int val, int addVal)
 {
     Link *add = new Link; //create link to add
@@ -227,8 +266,29 @@ Link *addAftr(Link *front, int val, int addVal)
     add->linkPtr = temp->linkPtr; //make it so temp and add point to same thing
     temp->linkPtr = add;    //point temp to add;
 
-    //copy front
-    
     
     return front;
+}
+
+//
+//
+//adds before a value
+Link * addBefr(Link *front, int val, int addVal)
+{
+    Link *add = new Link; //create new link add
+    add->data = addVal;     //set its data = to addVal
+    Link *temp = new Link;  //create new link 
+    Link *temp2 = new Link; //create second new link for copying
+    temp = fndLst(front, val); //set temp = point in chain where value is found
+    add->linkPtr = temp;    //set the added link's ptr point to temp
+    
+    //set temp2 list = point before the value given
+    temp2 = fndBefr(front,val);
+
+    //point the before to the added link
+    temp2->linkPtr = add;
+    
+    //return the front
+    return front;
+    
 }
