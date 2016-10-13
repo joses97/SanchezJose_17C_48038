@@ -260,13 +260,12 @@ int   cntLst(Link *front){
 Link *addAftr(Link *front, int val, int addVal)
 {
     Link *add = new Link; //create link to add
-    add->data=addVal;       //set addVal
-    Link *temp = new Link; //create new temp
+    add->data = addVal;       //set addVal
+    Link *temp = new Link; //create new temp, find location of val
     temp = fndLst(front, val);  //set temp pointer = location of found value
     add->linkPtr = temp->linkPtr; //make it so temp and add point to same thing
     temp->linkPtr = add;    //point temp to add;
 
-    
     return front;
 }
 
