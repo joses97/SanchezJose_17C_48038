@@ -10,8 +10,7 @@
 //Composition of a Link
 struct Link{
     int data;		//Any integer data, to be changed any class with templates later
-    Link *next;  //points to the next node in line
-    Link *prev;     //points the previous node in line
+    Link *linkPtr;  //Self Reference which when utilized forms a linked list
 };
 
 

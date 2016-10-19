@@ -28,6 +28,7 @@ int    cntLst(Link *);      //How many elements are in the list
 Link * addStrt(Link *, int);    //Adds a link to the beginning
 Link * addAftr(Link *, int, int);    //adds value int after int
 Link * addBefr(Link *, int, int);   //adds value int before int
+Link * fndBefr(Link *, int);          //find link pointer before given value
 Link * delVal(Link *, int);     //deletes link at that hold given value;
 
 //000000001111111112222222222333333333344444444445555555555666666666677777777778
@@ -38,7 +39,6 @@ int main(int argc, char** argv) {
     Link *lnkList;
     int numList=8,valAdd=42,valFnd1=5,valFnd2=11;
     
-    cout<<"Creating a doubly linked list"<<endl;
     //Fill the linked list
     lnkList=fillLst(numList);
     
@@ -97,16 +97,12 @@ Link *delVal(Link *front,  int value)
 {
     Link *temp1 = new Link; //create new link
     Link *temp2 = new Link; //create new link
-    Link *temp3 = new Link; //create new link
     
     temp1 = fndLst(front, value); //set  temp1 to link for given delete value
-    temp2 = temp1->prev;  //set temp 2 to next node
-    temp3 = temp1->next;  //set temp 3 to previous node
+    temp2 = fndBefr(front, value); //set temp2 to link before delete value
     
-    temp2->next = temp3;
-    temp3->prev = temp2;
-    
-    temp1=NULL; //delete point in link where value is held
+    temp2->linkPtr=temp1->linkPtr; //set temp2's lnkptr to temp1's lnkptr
+    temp1=NULL; //set temp1 = NULL
 
     return front;
     
@@ -116,10 +112,12 @@ Link *delVal(Link *front,  int value)
 Link *addStrt(Link *front, int data)
 {
     Link *temp = new Link;
-    temp->next = front; //set temp's next to front
-    temp->prev = NULL;  //set temp's previous to NULL to show first order
-    temp->data = data;  //set its data to the given data
-    front->prev = temp; //set fronts previous now to temp node
+    Link *temp2 = new Link;
+    temp->linkPtr = front;
+    temp->data = data;
+    temp2 = endLst(front); 
+    temp2->linkPtr = temp;
+    
     return temp; 
 }
 
@@ -132,8 +130,7 @@ Link *fillLst(int n){
     //Think of this part as the constructor
     Link *front=new Link;//Allocate a link at the front of the list
     front->data=n;       //Initialize with data
-    front->next=NULL; //At the moment not pointing it to anything
-    front->prev=NULL;
+    front->linkPtr=NULL; //At the moment not pointing it to anything
     Link *next=front;    //Create a pointer to progress through the list
 
     //Fill the rest of the list with decreasing data down to 1
@@ -141,10 +138,10 @@ Link *fillLst(int n){
     do{
        Link *temp=new Link; //Allocate a new link
        temp->data=n;        //Fill with data
-       temp->next=NULL;  //Place at the end
-       next->next=temp;  //Hook the new link to the end of the list
-       temp->prev=next;     //point the prev to next pointer
+       temp->linkPtr=NULL;  //Place at the end
+       next->linkPtr=temp;  //Hook the new link to the end of the list
        next=temp;           //Move the pointer to the end
+       next->linkPtr = front;
     }while(--n>0);          //Continue till you count down to Zero
     //Exit by return the original link pointer
     return front;           //Return the front pointer to the list
@@ -160,8 +157,8 @@ void  prntLst(Link *front){
     cout<<endl<<"The Beginning of the List"<<endl;
     do{
         cout<<next->data<<endl; //Print the contents of the link
-        next=next->next;     //Go to the next link in the list
-    }while(next!=NULL);         //Loop until reaching the end
+        next=next->linkPtr;     //Go to the next link in the list
+    }while(next!=front);         //Loop until reaching the end
     cout<<"The End of the List"<<endl<<endl;
 }
 
@@ -171,11 +168,12 @@ void  prntLst(Link *front){
 //Input -> front  The address to the front of the allocated list.
 //Output-> Deallocate and return a NULL for the linked list pointer.
 void  destLst(Link *front){
+    Link *temp = endLst(front);
     do{
-       Link *temp=front->next;   //Point to the next link in the list
+       Link *temp=front->linkPtr;   //Point to the next link in the list
        delete front;                //Delete the front of the list
        front=temp;                  //Swap the front
-    }while(front!=NULL);
+    }while(front!=temp);
 }
 
 //000000001111111112222222222333333333344444444445555555555666666666677777777778
@@ -187,8 +185,8 @@ Link  *endLst(Link *front){
     Link *temp=front,*next; //Declare pointers used to step through the list
     do{
         next=temp;          //Point to the current link with a swap
-        temp=temp->next; //Point to the next link
-    }while(temp!=NULL);     //Your done when you hit the end
+        temp=temp->linkPtr; //Point to the next link
+    }while(temp!=front);     //Your done when you hit the end
     return next;
 }
 
@@ -201,9 +199,8 @@ void   addLst(Link *front,int data){
     Link *last=endLst(front);  //Find the last link
     Link *add=new Link;        //Create the new link
     add->data=data;            //Add the data
-    add->next=NULL;         //Set the pointer to NULL
-    add->prev = last;       //set add's previous pointer to "last" node
-    last->next=add;         //Point to the new end of the list
+    add->linkPtr=front;         //Set the pointer to NULL
+    last->linkPtr=add;         //Point to the new end of the list
 }
 
 //000000001111111112222222222333333333344444444445555555555666666666677777777778
@@ -217,8 +214,8 @@ int   findLst(Link *front,int value){
     do{
         n++;                //Increment the counter
         if(temp->data==value)return n;//Return where the data is found
-        temp=temp->next; //Move to the next link
-    }while(temp!=NULL);     //End when reaching the end of the linked list
+        temp=temp->linkPtr; //Move to the next link
+    }while(temp!=front);     //End when reaching the end of the linked list
     return 0;               //Not found then return a 0;
 }
 
@@ -231,11 +228,22 @@ Link  *fndLst(Link *front, int value){
     Link *temp=front;       //Set the cursor to move through the list
     do{
         if(temp->data==value)return temp;  //Address of data match
-        temp=temp->next;                //Next link in the list
-    }while(temp!=NULL);                    //End of the list
+        temp=temp->linkPtr;                //Next link in the list
+    }while(temp!=front);                    //End of the list
     return NULL;                           //Not found
 }
 
+//find value before
+Link *fndBefr(Link *front, int value)
+{
+    Link *temp = front;
+    do
+    {
+        if(temp->linkPtr->data==value) return temp;
+        temp = temp->linkPtr;
+    }while(temp!=front);
+    return NULL;
+}
 
 //000000001111111112222222222333333333344444444445555555555666666666677777777778
 //345678901234567890123456789012345678901234567890123456789012345678901234567890
@@ -247,8 +255,8 @@ int   cntLst(Link *front){
     Link *temp=front;   //Set the cursor to the front
     do{
         n++;            //Increment the counter
-        temp=temp->next;//Move to the next link
-    }while(temp!=NULL); //Loop until the end is reached
+        temp=temp->linkPtr;//Move to the next link
+    }while(temp!=front); //Loop until the end is reached
     return n;           //Return the counter value
 }
 
@@ -258,15 +266,11 @@ int   cntLst(Link *front){
 Link *addAftr(Link *front, int val, int addVal)
 {
     Link *add = new Link; //create link to add
-    Link *temp = new Link; //create new temp, find location of val
-    Link *temp2 = new Link; //create new to temp
     add->data = addVal;       //set addVal
+    Link *temp = new Link; //create new temp, find location of val
     temp = fndLst(front, val);  //set temp pointer = location of found value
-    add->next = temp->next; //make it so temp and add point to same thing
-    add->prev = temp;       //make "add's" prev node point to 
-    temp->next = add;    //point temp to add;
-    temp2 = add->next;        //set temp 2 to add's link pointer
-    temp2->prev = add;      //set temp 2 prev to add node
+    add->linkPtr = temp->linkPtr; //make it so temp and add point to same thing
+    temp->linkPtr = add;    //point temp to add;
 
     return front;
 }
@@ -277,17 +281,17 @@ Link *addAftr(Link *front, int val, int addVal)
 Link * addBefr(Link *front, int val, int addVal)
 {
     Link *add = new Link; //create new link add
+    add->data = addVal;     //set its data = to addVal
     Link *temp = new Link;  //create new link 
     Link *temp2 = new Link; //create second new link for copying
-    add->data = addVal;     //set its data = to addVal
     temp = fndLst(front, val); //set temp = point in chain where value is found
-    add->next = temp;    //set the added link's ptr point to temp
-    temp2 = temp->prev; //set temp2 node to temp's prev
-    temp->prev = add;   //set temp prev pointer to new added node
+    add->linkPtr = temp;    //set the added link's ptr point to temp
+    
+    //set temp2 list = point before the value given
+    temp2 = fndBefr(front,val);
 
     //point the before to the added link
-    temp2->next = add;
-    add->prev = temp2;
+    temp2->linkPtr = add;
     
     //return the front
     return front;
