@@ -122,7 +122,6 @@ Link *sort(Link *front)
 
             }
             temp = temp->linkPtr;
-            prntLst(front);
         }
     }
 
