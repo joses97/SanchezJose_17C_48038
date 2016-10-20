@@ -38,7 +38,7 @@ int main(int argc, char** argv) {
     Link *lnkList;
     int numList=8,valAdd=42,valFnd1=5,valFnd2=11;
     
-    cout<<"Creating a doubly linked list"<<endl;
+    cout<<"DOUBLY LINKED LIST"<<endl;
     //Fill the linked list
     lnkList=fillLst(numList);
     

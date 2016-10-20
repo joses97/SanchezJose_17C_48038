@@ -9,19 +9,19 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=Cygwin-Windows
 CND_ARTIFACT_DIR_Debug=dist/Debug/Cygwin-Windows
-CND_ARTIFACT_NAME_Debug=linklists
-CND_ARTIFACT_PATH_Debug=dist/Debug/Cygwin-Windows/linklists
+CND_ARTIFACT_NAME_Debug=sortinglinklist
+CND_ARTIFACT_PATH_Debug=dist/Debug/Cygwin-Windows/sortinglinklist
 CND_PACKAGE_DIR_Debug=dist/Debug/Cygwin-Windows/package
-CND_PACKAGE_NAME_Debug=linklists.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/Cygwin-Windows/package/linklists.tar
+CND_PACKAGE_NAME_Debug=sortinglinklist.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/Cygwin-Windows/package/sortinglinklist.tar
 # Release configuration
 CND_PLATFORM_Release=Cygwin-Windows
 CND_ARTIFACT_DIR_Release=dist/Release/Cygwin-Windows
-CND_ARTIFACT_NAME_Release=linklists
-CND_ARTIFACT_PATH_Release=dist/Release/Cygwin-Windows/linklists
+CND_ARTIFACT_NAME_Release=sortinglinklist
+CND_ARTIFACT_PATH_Release=dist/Release/Cygwin-Windows/sortinglinklist
 CND_PACKAGE_DIR_Release=dist/Release/Cygwin-Windows/package
-CND_PACKAGE_NAME_Release=linklists.tar
-CND_PACKAGE_PATH_Release=dist/Release/Cygwin-Windows/package/linklists.tar
+CND_PACKAGE_NAME_Release=sortinglinklist.tar
+CND_PACKAGE_PATH_Release=dist/Release/Cygwin-Windows/package/sortinglinklist.tar
 #
 # include compiler specific variables
 #

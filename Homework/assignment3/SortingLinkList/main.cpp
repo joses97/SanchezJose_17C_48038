@@ -30,6 +30,8 @@ Link * addAftr(Link *, int, int);    //adds value int after int
 Link * addBefr(Link *, int, int);   //adds value int before int
 Link * fndBefr(Link *, int);          //find link pointer before given value
 Link * delVal(Link *, int);     //deletes link at that hold given value;
+Link * sort(Link *);    //sorts the link list from hight to low
+Link * valAdd(Link *, int);//find the address of the nth link
 
 //000000001111111112222222222333333333344444444445555555555666666666677777777778
 //345678901234567890123456789012345678901234567890123456789012345678901234567890
@@ -38,6 +40,9 @@ int main(int argc, char** argv) {
     //Declare a pointer to the linked list and data to test in link creation
     Link *lnkList;
     int numList=8,valAdd=42,valFnd1=5,valFnd2=11;
+    
+    //sorting link list
+    cout<<"SORTING A LINKED LIST LOW TO HIGH"<<endl;
     
     //Fill the linked list
     lnkList=fillLst(numList);
@@ -85,6 +90,11 @@ int main(int argc, char** argv) {
     lnkList = delVal(lnkList, 4);
     prntLst(lnkList);
     
+    //sorting
+    cout<<"Sorting Link list from low to high"<<endl;
+    lnkList = sort(lnkList);
+    prntLst(lnkList);
+    
     
     //Deallocate memory for the Linked List
     destLst(lnkList);
@@ -93,6 +103,41 @@ int main(int argc, char** argv) {
     return 0;
 }
 
+//sorts the link list from low to high
+Link *sort(Link *front)
+{
+
+    cout<<"SORTING THE LINK LIST"<<endl;
+    for(int i=0; i<cntLst(front); i++)
+    {
+        Link *temp = front;    
+        while(temp->linkPtr!=NULL)
+        {
+            if(temp->data > temp->linkPtr->data)
+            {
+                int temp2 = temp->data;
+                temp->data = temp->linkPtr->data; 
+                temp->linkPtr->data = temp2;
+
+
+            }
+            temp = temp->linkPtr;
+            prntLst(front);
+        }
+    }
+
+    
+
+    
+    
+    return front;
+
+}
+
+
+
+
+//deletes the node which contains data==value
 Link *delVal(Link *front,  int value)
 {
     Link *temp1 = new Link; //create new link
