@@ -1,0 +1,21 @@
+Welcome to Battleship version 2.0! Now with Class!
+The rules of battleship are as followed
+Each player gets 5 untis to place on the board.
+The board is a 10x10 grid filled with '-' initially 
+The initial x position will be entered first in the int format.
+Values excepted to be entered are 1-10;
+Both useres are to place bets on the game.
+The initial y position will be entered second as a character
+Values excepted to be entered are A-J, not no required.
+The user will be told to re-enter values until the values are accpeted.
+Each user gets one chance to guess, once the guess is submitted, the user can presses enter to continue to the next turn.
+This continues untill all ships have been sunk.
+The Carrier is 5 units in legnth.
+The Battleship is 4 units in length.
+The Cruiser is 3 units in length.
+
+The submarine is 3 units in length.
+
+The Destoyer is 2 units in length. 
+
+Good luck and have fun!
