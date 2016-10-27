@@ -9,6 +9,7 @@
 #include <iostream>
 #include <fstream>
 #include <map>
+#include <set>
 using namespace std;
 
 //user libraries
@@ -35,7 +36,11 @@ int main(int argc, char** argv) {
     int turn = 0; //turn number
     int hit1 = 0; //player 1counter
     int hit2 = 0; //player 2 hit counter
-    map<string, float> bets; //create map for the bets
+    map<string, float> bets; //map for bets. hold name of gambler, better
+    float betAmnt = 0; //the amount to be gambled 
+    string betName; //name of gamblers
+    float totalBet = 0; //the total amount on the game
+    
     char bet; //choice for more betting
    // string names; //names of potential betters
    // float amount; //amount being bet
@@ -81,20 +86,43 @@ int main(int argc, char** argv) {
     names(players);
     
     //enter the bets for each player
-    cout<<"Enter bet for "<<players[0].names<<endl;
-    cin>>p1;
-    cout<<"Enter bet for "<<players[1].names<<endl;
-    cin>>p2;
+    for(int i=0; i<NUMPLAY; i++)
+    {
+        cout<<"Enter bet for "<<players[i].names<<endl;
+        cin>>betAmnt;
+        bets[players[i].names] = betAmnt;
+    }
     
-    //begin placing the bets using maps
-    bets[players[0].names] = p1;
-    bets[players[1].names] = p2;
-    bets["Pot"] = bets[players[0].names] + bets[players[1].names];
+    //ask for other gamblers
+    cout<<"Are others gambling on this game? Y/N"<<endl;
+    cin>>bet;
     
-    //display bets placed 
-    cout<<players[0].names<<" Placed: "<<bets[players[0].names]<<endl;
-    cout<<players[1].names<<" Placed: "<<bets[players[1].names]<<endl;
-    cout<<"Total Pot = "<<bets["Pot"]<<endl;
+    //loop for more players
+    while(toupper(bet)=='Y')
+    {
+        cout<<"Enter Unique Name of Gambler ";
+        cin>>betName;
+        cout<<endl;
+        cout<<"Enter Bet amount ";
+        cin>>betAmnt;
+        bets[betName] = betAmnt;
+        cout<<"Any more gamblers betting on this game ? Y/N "<<endl;
+        cin>>bet;
+        cout<<endl;
+    }
+    
+    //iterators for looping to find total amount gambled
+    map<string, float>::iterator it = bets.begin();
+    while(it != bets.end())
+    {
+        totalBet += it->second;
+        ++it;
+    }
+    bets["TotalPot"] = totalBet;
+    cout<<"The total amount bet was: "<<bets["TotalPot"]<<endl;
+    cout<<"This money was gambled across "<<bets.size()-1<<endl;
+    
+    
     
     //loop twice for each player
     for(int i=0; i<NUMSHIP; i++)
@@ -142,7 +170,6 @@ int main(int argc, char** argv) {
             winner=false;
         }
         
-        
         //enter guesses for player 2
         enterG(player2, copy2, players, 1); //enter guesses for player 2
         //check for hit
@@ -182,7 +209,8 @@ int main(int argc, char** argv) {
     if(win==true)
     {   //output hits, misses, guesses, payout, and name
         cout<<"Congrats to the winner "<<players[0].names<<endl;
-        cout<<"Total Winnings: "<<bets["Pot"]<<endl;
+        cout<<"Total Winnings for bet on :"
+                " "<<players[0].names<<": "<<bets["totalPot"]<<endl;
         cout<<"Displaying statistics"<<endl;
         cout<<"Total Hits:   "<<player1.getHits()<<endl;
         cout<<"Total Misses: "<<player1.getMiss()<<endl;
@@ -192,7 +220,8 @@ int main(int argc, char** argv) {
     if(win2==true)
     {   //output hits, misses, guesses, payout, and name
         cout<<"Congrats to the winner "<<players[1].names<<endl;
-        cout<<"Total Winnings: "<<bets["Pot"]<<endl;
+        cout<<"Total Winnings for bet on :"
+                " "<<players[1].names<<": "<<bets["totalPot"]<<endl;
         cout<<"Displaying statistics"<<endl;
         cout<<"Total Hits:   "<<player2.getHits()<<endl;
         cout<<"Total Misses: "<<player2.getMiss()<<endl;

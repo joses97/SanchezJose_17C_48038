@@ -8,6 +8,7 @@
 #ifndef LINK_H
 #define LINK_H
 
+//Link list struct
 struct Link
 {
     int turn; //number in line of the list
