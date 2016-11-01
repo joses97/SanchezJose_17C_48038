@@ -37,6 +37,7 @@ int main(int argc, char** argv) {
     int hit1 = 0; //player 1counter
     int hit2 = 0; //player 2 hit counter
     map<string, float> bets; //map for bets. hold name of gambler, better
+    set<float> pot;     //set to hold the total win amount for player
     float betAmnt = 0; //the amount to be gambled 
     string betName; //name of gamblers
     float totalBet = 0; //the total amount on the game
@@ -118,9 +119,13 @@ int main(int argc, char** argv) {
         totalBet += it->second;
         ++it;
     }
-    bets["TotalPot"] = totalBet;
-    cout<<"The total amount bet was: "<<bets["TotalPot"]<<endl;
-    cout<<"This money was gambled across "<<bets.size()-1<<endl;
+    pot.insert(totalBet);
+    
+    set<float>::iterator itr = pot.begin();
+    cout<<"The pot total its: "<<*itr<<endl;
+
+
+    cout<<"This money was gambled across "<<bets.size()<<endl;
     
     
     
@@ -210,7 +215,7 @@ int main(int argc, char** argv) {
     {   //output hits, misses, guesses, payout, and name
         cout<<"Congrats to the winner "<<players[0].names<<endl;
         cout<<"Total Winnings for bet on :"
-                " "<<players[0].names<<": "<<bets["totalPot"]<<endl;
+                " "<<players[0].names<<": "<<*itr<<endl;
         cout<<"Displaying statistics"<<endl;
         cout<<"Total Hits:   "<<player1.getHits()<<endl;
         cout<<"Total Misses: "<<player1.getMiss()<<endl;
@@ -221,7 +226,7 @@ int main(int argc, char** argv) {
     {   //output hits, misses, guesses, payout, and name
         cout<<"Congrats to the winner "<<players[1].names<<endl;
         cout<<"Total Winnings for bet on :"
-                " "<<players[1].names<<": "<<bets["totalPot"]<<endl;
+                " "<<players[1].names<<": "<<*itr<<endl;
         cout<<"Displaying statistics"<<endl;
         cout<<"Total Hits:   "<<player2.getHits()<<endl;
         cout<<"Total Misses: "<<player2.getMiss()<<endl;
