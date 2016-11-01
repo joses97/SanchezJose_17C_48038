@@ -2,7 +2,7 @@
  * File:   main.cpp
  * Author: Jose Sanchez
  * Purpose: Battleship
- * Created on June 4th 2016
+ * Created on October 30 2016
  */
 
 //System Libraries 
@@ -19,6 +19,7 @@ using namespace std;
 //global constants
 
 //Function Prototypes
+void destLst(Link *); //destroys linked list
 void inputS(board&, int); //input
 char checkC(board, int, int, int, int, int); //check for hit
 void rules(); //display rules
@@ -73,8 +74,8 @@ int main(int argc, char** argv) {
     player2.setSize(); //set the size of the ships to the ships created
     
     //copy board of one player to their respective copy boards
-    copy1=player1;
-    copy2=player2;
+    copy1 = player1;
+    copy2 = player2;
     
     //enter the info of the players
     for(int i=0; i<NUMPLAY; i++) //loop ten twice for each player
@@ -121,6 +122,7 @@ int main(int argc, char** argv) {
     }
     pot.insert(totalBet);
     
+    //set iterator to pot.begin
     set<float>::iterator itr = pot.begin();
     cout<<"The pot total its: "<<*itr<<endl;
 
@@ -168,7 +170,7 @@ int main(int argc, char** argv) {
         cin.ignore(); //ignore input
         cout<<"Press enter to continue to the next player"<<endl;
         cin.ignore(); //need to press enter 
-        win=player1.chekWin(); //check for the win
+        win = player1.chekWin(); //check for the win
         //if win==true
         if(win==true)
         {   //set winner to false
@@ -299,6 +301,9 @@ int main(int argc, char** argv) {
         cout<<endl;
     } 
 
+    //delete linked lists
+    destLst(listP1);
+    destLst(listP2);
     //delete dynamically created array
     delete [] players;
     

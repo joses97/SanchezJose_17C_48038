@@ -363,3 +363,12 @@ void names(info sortN[]){
     delete[] name1;
     delete[] name2;
 }
+
+//deletes linked lists
+void  destLst(Link *front){
+    do{
+       Link *temp=front->next;   //Point to the next link in the list
+       delete front;                //Delete the front of the list
+       front=temp;                  //Swap the front
+    }while(front!=NULL);
+}
