@@ -2,7 +2,7 @@
  * File:   board.cpp
  * Author: Jose Sanchez
  * Purpose: hold functions
- * Created on June 4th 2016
+ * Created on October 24, 2016, 2:37 PM
  */
 
 //System Libraries 

@@ -32,8 +32,6 @@ Link * addLst(Link *, int, int); //create new link add to last
 int main(int argc, char** argv) {
     Link *listP1 = new Link; //create link list to hold statistical data for p1
     Link *listP2 = new Link; //crate link list to hold statistical date for p2
-    makeLnk(listP1); //create link list for turn 1
-    makeLnk(listP2); //create link list for turn 2
     int turn = 0; //turn number
     int hit1 = 0; //player 1counter
     int hit2 = 0; //player 2 hit counter
@@ -47,14 +45,16 @@ int main(int argc, char** argv) {
    // string names; //names of potential betters
    // float amount; //amount being bet
     
-    float p1=0; //player 1 bet
-    float p2=0; //player 2 bet
+
     bool win=false; //win for player 1
     bool win2=false;    //win for player 2
     bool winner=true;   //winner=true
     info *players = new info[NUMPLAY];  //dynamic array of structs
     fstream file;   //file 
     fstream rFile;  //rFile
+    
+    makeLnk(listP1); //create link list for turn 1
+    makeLnk(listP2); //create link list for turn 2
     
     //make 4 boards
     board player1;
@@ -126,11 +126,8 @@ int main(int argc, char** argv) {
     set<float>::iterator itr = pot.begin();
     cout<<"The pot total its: "<<*itr<<endl;
 
-
     cout<<"This money was gambled across "<<bets.size()<<endl;
-    
-    
-    
+
     //loop twice for each player
     for(int i=0; i<NUMSHIP; i++)
     {
@@ -203,6 +200,7 @@ int main(int argc, char** argv) {
         }    
     }while(winner); //while winner
     
+    cout<<"GAME OVER"<<endl;
     cout<<"Turn by turn statistics for Player: "<<players[0].names<<endl;
     prntLst(listP1);
     cout<<"Press Enter to view next player turn by turn stats"<<endl;
@@ -213,27 +211,22 @@ int main(int argc, char** argv) {
     cin.ignore();
     
     //if player 1 won
-    if(win==true)
+    if(win!=true)
     {   //output hits, misses, guesses, payout, and name
         cout<<"Congrats to the winner "<<players[0].names<<endl;
         cout<<"Total Winnings for bet on :"
                 " "<<players[0].names<<": "<<*itr<<endl;
         cout<<"Displaying statistics"<<endl;
-        cout<<"Total Hits:   "<<player1.getHits()<<endl;
-        cout<<"Total Misses: "<<player1.getMiss()<<endl;
         cout<<"Total number of guesses: "<<player1.getGss()<<endl;
     }
     //if player 2 won
-    if(win2==true)
+    if(win2!=true)
     {   //output hits, misses, guesses, payout, and name
         cout<<"Congrats to the winner "<<players[1].names<<endl;
         cout<<"Total Winnings for bet on :"
                 " "<<players[1].names<<": "<<*itr<<endl;
         cout<<"Displaying statistics"<<endl;
-        cout<<"Total Hits:   "<<player2.getHits()<<endl;
-        cout<<"Total Misses: "<<player2.getMiss()<<endl;
         cout<<"Total number of guesses: "<<player2.getGss()<<endl;
-//pot
     }
     
     //loop to fill in structured data to send to file;

@@ -2,7 +2,7 @@
  * File:   playrInfo.h
  * Author: Jose Sanchez
  * Purpose: hold player info
- * Created on June 4th 2016
+ * Created on October 24, 2016, 2:37 PM
  */
 
 //System libraries
