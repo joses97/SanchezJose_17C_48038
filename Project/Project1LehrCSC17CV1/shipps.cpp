@@ -16,8 +16,6 @@
 //******************************************************************************
 //initialize the total amount of ships to 0
 int warShip::totShip=0;
-//******************************************************************************
-//******************************************************************************
 //Constructor initialize all protected members to 0
 warShip::warShip(){
     xpos=0; //xpos=0
@@ -26,8 +24,6 @@ warShip::warShip(){
     fypos=0; //fypos=0
     totShip++; //totShip++
 }
-//******************************************************************************
-//******************************************************************************
 // assigns values to the protected member functions
 void warShip::bShipC(int x, int y , int x2,  int y2){
     xpos=x;     //set xpos=x

@@ -19,15 +19,12 @@ using namespace std;
 //initialize static variable to 0
 int board::guesses=0;
 //******************************************************************************
-//******************************************************************************
 //Set static variable of array of 5 to the values of names of ships
 int board::sizes[NUMSHIP]={5, 4, 3, 3, 2};
-//******************************************************************************
 //******************************************************************************
 //Set static variable of array of 5 to the values of names of ships
 string board::names[NUMSHIP]={"Carrier", "Battleship", "Cruiser", "Submarine",
     "Destroyer"};
-//******************************************************************************
 //******************************************************************************
 //Defaulted Constructor For creating a board
 board::board(){
@@ -48,19 +45,16 @@ board::board(){
     yGuess=0;
 }
 //******************************************************************************
-//******************************************************************************
 //defaulted constructor
 board::~board(){
     //delete the dynamically created array of ships
     delete [] ships;
 }
 //******************************************************************************
-//******************************************************************************
 //gets access to the board positions
 char board::getGrd(int x, int y){
     return array[x-1][y-1];
 }
-//******************************************************************************
 //******************************************************************************
 //gets access to the board positions
 bool board::chekWin(){
@@ -73,7 +67,6 @@ bool board::chekWin(){
         return false;
     }
 }
-//******************************************************************************
 //******************************************************************************
 //gets access to the board positions
 bool board::check(int x, int y, board& copy){
@@ -107,13 +100,11 @@ bool board::check(int x, int y, board& copy){
     }
 }
 //******************************************************************************
-//******************************************************************************
 //assigns values to the guess for the player 
 void board::getGess(int x, int y){
     xGuess=x;   //assigns value to the xGuess private member
     yGuess=y;   //assigns value to the yGuess private member
 }
-//******************************************************************************
 //******************************************************************************
 //Test to see if user entered values are valid entries
 bool board::testCor(int i, int xOne, int yOne, int xTwo, int yTwo){
@@ -173,7 +164,6 @@ bool board::testCor(int i, int xOne, int yOne, int xTwo, int yTwo){
 }
 
 //******************************************************************************
-//******************************************************************************
 //set the size of each ship created
 void board::setSize(){
     //loop 5 time to set the size of the ships
@@ -182,7 +172,6 @@ void board::setSize(){
         ships[i].setSize(sizes[i]);
     }
 }
-//******************************************************************************
 //******************************************************************************
 //set the names of each ship created
 void board::setSNms(){
@@ -193,18 +182,15 @@ void board::setSNms(){
     }
 }
 //******************************************************************************
-//******************************************************************************
 //get the name of the ship requested
 string board::getN(int i){ //returns the name of the ship requested
     return ships[i].getName();
 }
 //******************************************************************************
-//******************************************************************************
 //get the size of the ship requested
 int board::getSzs(int i){ //returns the name of the ship requested
     return ships[i].getSize();
 }
-//******************************************************************************
 //******************************************************************************
 //display the coordinates of the ship requested
 void board::disCoor(int i){
@@ -216,7 +202,6 @@ void board::disCoor(int i){
     cout<<ships[i].getName()<<" final position is located at:"
             " "<<ships[i].getfxpos()<<" and "<<ships[i].getfypos()<<endl;
 }
-//******************************************************************************
 //******************************************************************************
 //assigns one boards 2d array to the other
 void board::operator =(const board& right){
@@ -230,14 +215,12 @@ void board::operator =(const board& right){
         }
 }
 //******************************************************************************
-//******************************************************************************
 //makes the ship with the requested parameters 
 void board::makeShp(int i, int a, int b, int c, int d){
     //fill in values for the  initial x and y position
     //c and d are the final x and y position
     ships[i].bShipC(a, b, c, d);
 }
-//******************************************************************************
 //******************************************************************************
 //places the ship initial and final positions on the grid
 void board::shipOn(int i){
@@ -246,7 +229,6 @@ void board::shipOn(int i){
     //assign the final given ship coordinates to the array(board) to 'X'
     array[ships[i].getfypos()-1][ships[i].getfxpos()-1]='X';
 }
-//******************************************************************************
 //******************************************************************************
 //displays the board 
 void board::display(){
@@ -267,7 +249,6 @@ void board::display(){
     }      
 }
 //******************************************************************************
-//******************************************************************************
 //fills in the positions from  the initial position selected to the initial
 void board::fillrest(int n){
     //fills in from the initial ship position to the final position for x
@@ -284,18 +265,15 @@ void board::fillrest(int n){
     }       
 }
 //******************************************************************************
-//******************************************************************************
 board board::operator +(const board &){
     
 }
-//******************************************************************************
 //******************************************************************************
 //adds one to the total amount of guesses
 board& board::operator++(){
     guesses+=0;
     return *this;
 }
-//******************************************************************************
 //******************************************************************************
 //adds one to the total amount of guess, static int 
 board board::operator++(int){

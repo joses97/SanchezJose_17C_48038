@@ -20,8 +20,6 @@ using namespace std;
 
 //global constants
 
-//
-//
 //add to end of the list
 Link *addLst(Link *front, int scoreP, int turn)
 {
@@ -50,10 +48,7 @@ void  prntLst(Link *front){
     }while(next!=NULL);         //Loop until reaching the end
 }
 
-
 //crate link lists
-//
-//
 void makeLnk(Link *list)
 {
     list->turn = 0; //set turn to 0
@@ -61,9 +56,6 @@ void makeLnk(Link *list)
     list->next = NULL; //set next to NULL
 }
 
-
-//******************************************************************************
-//******************************************************************************
 //get the rules of the game, reused code from last project
 void rules(){
     fstream rules; //rules fstream
@@ -88,8 +80,7 @@ void rules(){
     //close rules file
     rules.close();
 }
-//******************************************************************************
-//******************************************************************************
+
 //this functions changes a character to an integer
 int CtoInt(char y){
     //switch case for character y
@@ -111,8 +102,6 @@ int CtoInt(char y){
         }
     }
 }
-//******************************************************************************
-//******************************************************************************
 //This function is used to make sure the user entered in an int 
 int strTest(string x){
     //char test=x[0];
@@ -141,8 +130,6 @@ int strTest(string x){
     }
 }
 
-//******************************************************************************
-//******************************************************************************
 //This function is used to get the coordinates of the users ships
 void inputS(board &player, int i){
     int x=0; //x for input
@@ -238,8 +225,7 @@ void inputS(board &player, int i){
     player.disCoor(i);
     player.fillrest(i);
 }
-//******************************************************************************
-//******************************************************************************
+
 //enter in values for the guesses
 void enterG(board& player, board& pCopy,  info pInfo[], int i){
     int xVal=0; //xValue
@@ -289,8 +275,7 @@ void enterG(board& player, board& pCopy,  info pInfo[], int i){
     }while(toupper(guess)!='Y');
     player.getGess(xVal, y1);
 }
-//CODE PULLED FROM PREVIOUS PROJECT DR LEHR!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//******************************************************************************
+//sorts the names of the players
 //******************************************************************************
 void names(info sortN[]){
     //declare and initialize variables
