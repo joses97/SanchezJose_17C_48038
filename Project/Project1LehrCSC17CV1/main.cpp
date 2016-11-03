@@ -10,6 +10,8 @@
 #include <fstream>
 #include <map>
 #include <set>
+#include <vector>
+#include <algorithm>
 using namespace std;
 
 //user libraries
@@ -40,18 +42,14 @@ int main(int argc, char** argv) {
     float betAmnt = 0; //the amount to be gambled 
     string betName; //name of gamblers
     float totalBet = 0; //the total amount on the game
-    
     char bet; //choice for more betting
-   // string names; //names of potential betters
-   // float amount; //amount being bet
-    
-
     bool win=false; //win for player 1
     bool win2=false;    //win for player 2
     bool winner=true;   //winner=true
     info *players = new info[NUMPLAY];  //dynamic array of structs
     fstream file;   //file 
     fstream rFile;  //rFile
+    
     
     makeLnk(listP1); //create link list for turn 1
     makeLnk(listP2); //create link list for turn 2
@@ -85,7 +83,17 @@ int main(int argc, char** argv) {
     }
     
     //call function names
-    names(players);
+    //MAKE EDIT HERE
+    vector<string> nameVec;
+    string name1 = players[0].names;
+    string name2 = players[1].names;
+    nameVec.push_back(name1);
+    nameVec.push_back(name2);
+    sort(nameVec.begin(), nameVec.end());
+    for(vector<string>::iterator i = nameVec.begin(); i != nameVec.end(); ++i){
+        cout<<*i<<endl;
+    }
+    
     
     //enter the bets for each player
     for(int i=0; i<NUMPLAY; i++)
