@@ -26,7 +26,6 @@ void inputS(board&, int); //input
 char checkC(board, int, int, int, int, int); //check for hit
 void rules(); //display rules
 void enterG(board&, board&, info[], int i); //enter the game
-void names(info[]);  //names 
 void makeLnk(Link *); //create the link list
 void prntLst(Link *); //print the link list
 Link * addLst(Link *, int, int); //create new link add to last
@@ -82,18 +81,24 @@ int main(int argc, char** argv) {
         getline(cin, players[i].names);
     }
     
-    //call function names
-    //MAKE EDIT HERE
-    vector<string> nameVec;
-    string name1 = players[0].names;
-    string name2 = players[1].names;
-    nameVec.push_back(name1);
-    nameVec.push_back(name2);
-    sort(nameVec.begin(), nameVec.end());
-    for(vector<string>::iterator i = nameVec.begin(); i != nameVec.end(); ++i){
-        cout<<*i<<endl;
+    //sort names using sort algorithm from stl library 
+    vector<char> nameVec;
+    for(int p=0; p<NUMPLAY; p++) //loop twice for players
+    {   //loop for size of that players name
+        for(int i=0; i<players[p].names.length() + 1; i++)
+        {
+            nameVec.push_back(players[p].names[i]);
+        }
     }
-    
+    //sort the new array 
+    sort(nameVec.begin(), nameVec.end());
+    //show new array
+    cout<<"Here is the sort from low to high of player 1 and 2's name"<<endl;
+    for(vector<char>::iterator i = nameVec.begin(); i != nameVec.end(); ++i)
+    {
+        cout<<*i;
+    }
+    cout<<endl<<endl;
     
     //enter the bets for each player
     for(int i=0; i<NUMPLAY; i++)

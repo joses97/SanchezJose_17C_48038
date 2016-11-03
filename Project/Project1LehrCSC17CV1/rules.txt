@@ -1,4 +1,3 @@
-Welcome to Battleship version 2.0! Now with Class!
 The rules of battleship are as followed
 Each player gets 5 untis to place on the board.
 The board is a 10x10 grid filled with '-' initially 

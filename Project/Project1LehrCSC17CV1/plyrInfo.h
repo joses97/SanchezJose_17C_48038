@@ -14,17 +14,12 @@ using namespace std;
 //define 
 #ifndef PLYRINFO_H
 #define PLYRINFO_H
-
-
 //constant for the size of the 2d character array
 const int SIZEI=10;
-
 //create structure to keep track of user info
-struct info
-{
+struct info{
     char arr[SIZEI][SIZEI];
     string names;
 };
-
 #endif /* PLYRINFO_H */
 
