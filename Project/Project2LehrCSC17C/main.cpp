@@ -2,7 +2,7 @@
  * File:   main.cpp
  * Author: Jose Sanchez
  * Purpose: Battleship
- * Created on October 30 2016
+ * Created on December 13 2016
  */
 
 //System Libraries 
@@ -17,7 +17,6 @@ using namespace std;
 //user libraries
 #include "board.h"
 #include "binaryTree.h"
-#include "Link.h"
 
 //global constants
 
@@ -28,7 +27,6 @@ void rules(); //display rules
 void enterG(board&, board&, info[], int i); //enter the game
 unsigned int RSHash(const string& );
 void display(Node *);
-Link * addLst(Link *, int, int); //create new link add to last
 //Execution begins here
 int main(int argc, char** argv) {      
     

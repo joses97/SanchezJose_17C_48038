@@ -1,5 +1,6 @@
 //tree.cpp
 //Jose Sanchez
+//Created on December 13 2016
 
 #include "binaryTree.h"
 #include <cstdlib>

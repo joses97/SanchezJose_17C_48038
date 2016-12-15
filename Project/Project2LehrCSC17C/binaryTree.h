@@ -1,6 +1,7 @@
 /* 
  * File:   binaryTree.h
  * Author: Jose
+ * Created on December 13 2016
  */
 
 #ifndef BINARYTREE_H

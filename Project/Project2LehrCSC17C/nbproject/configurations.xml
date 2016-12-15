@@ -4,7 +4,6 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
-      <itemPath>Link.h</itemPath>
       <itemPath>binaryTree.h</itemPath>
       <itemPath>board.h</itemPath>
       <itemPath>plyrInfo.h</itemPath>
@@ -45,8 +44,6 @@
       </toolsSet>
       <compileType>
       </compileType>
-      <item path="Link.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="binaryTree.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="board.cpp" ex="false" tool="1" flavor2="0">
@@ -86,8 +83,6 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
-      <item path="Link.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="binaryTree.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="board.cpp" ex="false" tool="1" flavor2="0">

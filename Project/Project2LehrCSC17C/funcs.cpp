@@ -2,7 +2,7 @@
  * File:  funcs.cpp
  * Author: Jose Sanchez
  * Purpose: hold main functions
- * Created on October 24, 2016, 2:37 PM
+ * Created on Created on December 13 2016
  */
 
 //System Libraries 
@@ -15,7 +15,6 @@
 //user libraries
 #include "board.h"
 #include "plyrInfo.h"
-#include "Link.h"
 #include "binaryTree.h"
 using namespace std;
 

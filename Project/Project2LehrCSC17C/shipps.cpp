@@ -2,7 +2,7 @@
  * File:   shipps.cpp
  * Author: Jose Sanchez
  * Purpose: hold functions for class
- * Created on October 24, 2016, 2:37 PM
+ * Created on December 13 2016
  */
 
 //System Libraries 

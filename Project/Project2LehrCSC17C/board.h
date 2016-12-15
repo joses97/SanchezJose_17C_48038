@@ -2,7 +2,7 @@
  * File:   board.h
  * Author: Jose Sanchez
  * Purpose: class board
- * Created on October 24, 2016, 2:37 PM
+ * Created on December 13 2016
  */
 
 //System libraries
