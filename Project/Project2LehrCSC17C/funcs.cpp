@@ -22,41 +22,6 @@ using namespace std;
 //global constants
 
 
-//display binary tree
-void display(Node *current)
-{
-    //condition to end recursion
-    if(current != NULL)
-    {  //recursively call display with left node
-        display(current->left);        
-        //display contents
-        cout<<"Turn: "<<current->data<<" Total Hits:";
-        cout<<current->hits<<" (x,y) GUESS: (";
-        cout<<current->xguess<<","<<current->yguess<<")"<<endl;
-        //recursively call display with right node
-        display(current->right);
-    }
-}
-
-
-
-//hash function
-unsigned int RSHash(const string& str)
-{
-   unsigned int b    = 378551;
-   unsigned int a    = 63689;
-   unsigned int hash = 0;
-
-   for(std::size_t i = 0; i < str.length(); i++)
-   {
-      hash = hash * a + str[i];
-      a    = a * b;
-   }
-
-   return hash;
-}
-
-
 //get the rules of the game, reused code from last project
 void rules(){
     fstream rules; //rules fstream
@@ -275,4 +240,38 @@ void enterG(board& player, board& pCopy,  info pInfo[], int i){
         cin>>guess;
     }while(toupper(guess)!='Y');
     player.getGess(xVal, y1);
+}
+
+//display binary tree
+void display(Node *current)
+{
+    //condition to end recursion
+    if(current != NULL)
+    {  //recursively call display with left node
+        display(current->left);        
+        //display contents
+        cout<<"Turn: "<<current->data<<" Total Hits:";
+        cout<<current->hits<<" (x,y) GUESS: (";
+        cout<<current->xguess<<","<<current->yguess<<")"<<endl;
+        //recursively call display with right node
+        display(current->right);
+    }
+}
+
+
+
+//hash function
+unsigned int RSHash(const string& str)
+{
+   unsigned int b    = 378551;
+   unsigned int a    = 63689;
+   unsigned int hash = 0;
+
+   for(std::size_t i = 0; i < str.length(); i++)
+   {
+      hash = hash * a + str[i];
+      a    = a * b;
+   }
+
+   return hash;
 }
